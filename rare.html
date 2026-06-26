@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Rare - SAB Values</title>
+
+<style>
+
+body {
+background:#070b14;
+color:white;
+font-family:Arial;
+text-align:center;
+margin:0;
+}
+
+h1 {
+margin-top:25px;
+color:#4db8ff;
+}
+
+button {
+background:#333;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:10px;
+cursor:pointer;
+margin:15px;
+transition:.2s;
+}
+
+button:hover {
+background:#555;
+}
+
+.container {
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+gap:20px;
+padding:30px;
+max-width:1000px;
+margin:0 auto;
+}
+
+.card {
+background:#101a2b;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 12px #000;
+transition:.25s;
+border:1px solid #1f3a5a;
+}
+
+.card:hover {
+transform:translateY(-8px) scale(1.02);
+border-color:#4db8ff;
+}
+
+img {
+width:140px;
+height:140px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.value {
+color:#00ffcc;
+font-weight:bold;
+margin-top:10px;
+}
+
+.stats {
+color:#cfcfcf;
+margin-top:10px;
+line-height:1.4;
+font-size:14px;
+}
+
+a {
+text-decoration:none;
+}
+
+.back {
+display:inline-block;
+margin-top:10px;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🔵 Rare Values</h1>
+
+<button onclick="sortValues()">Sort by Value ⬇</button>
+
+<div class="container">
+
+<div class="card">
+<img src="imagens/trippitroppi.png">
+<h2>Trippitroppi</h2>
+<p class="value">12</p>
+<div class="stats">
+<p>Demand: 4/11</p>
+<p>Rarity: 4/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/gangsterfootera.png">
+<h2>Gangster Footera</h2>
+<p class="value">18</p>
+<div class="stats">
+<p>Demand: 5/11</p>
+<p>Rarity: 5/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/banditobobrito.png">
+<h2>Bandito Bobrito</h2>
+<p class="value">25</p>
+<div class="stats">
+<p>Demand: 6/11</p>
+<p>Rarity: 5/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/bonecaambalabu.png">
+<h2>Boneca Ambalabu</h2>
+<p class="value">10</p>
+<div class="stats">
+<p>Demand: 4/11</p>
+<p>Rarity: 4/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/cactohipopotamo.png">
+<h2>Cacto Hipopótamo</h2>
+<p class="value">30</p>
+<div class="stats">
+<p>Demand: 6/11</p>
+<p>Rarity: 6/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/tatatasahur.png">
+<h2>Tatata Sahur</h2>
+<p class="value">14</p>
+<div class="stats">
+<p>Demand: 4/11</p>
+<p>Rarity: 4/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/trictracbarabum.png">
+<h2>Tric Trac Barabum</h2>
+<p class="value">22</p>
+<div class="stats">
+<p>Demand: 5/11</p>
+<p>Rarity: 5/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/cupcakecoala.png">
+<h2>Cupcake Coala</h2>
+<p class="value">20</p>
+<div class="stats">
+<p>Demand: 5/11</p>
+<p>Rarity: 5/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/frogoelfo.png">
+<h2>Frogo Elfo</h2>
+<p class="value">16</p>
+<div class="stats">
+<p>Demand: 4/11</p>
+<p>Rarity: 4/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/pipiavocado.png">
+<h2>Pipi Avocado</h2>
+<p class="value">28</p>
+<div class="stats">
+<p>Demand: 6/11</p>
+<p>Rarity: 6/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/Pengolino_Nuvoletto.png">
+<h2>Pengolino Nuvoletto</h2>
+<p class="value">30</p>
+<div class="stats">
+<p>Demand: 7/11</p>
+<p>Rarity: 7/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/Pintealotto.png">
+<h2>Pintealotto</h2>
+<p class="value">27</p>
+<div class="stats">
+<p>Demand: 6/11</p>
+<p>Rarity: 6/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+</div>
+
+<a class="back" href="index.html">⬅ voltar</a>
+
+<script>
+
+function sortValues() {
+
+const container = document.querySelector(".container");
+const cards = Array.from(document.getElementsByClassName("card"));
+
+cards.sort((a,b)=>{
+
+let va = parseInt(a.querySelector(".value").textContent);
+let vb = parseInt(b.querySelector(".value").textContent);
+
+return vb - va;
+
+});
+
+cards.forEach(c => container.appendChild(c));
+
+}
+
+</script>
+
+</body>
+
+</html>

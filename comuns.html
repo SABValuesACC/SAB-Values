@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Common - SAB Values</title>
+
+<style>
+
+body {
+background:#0a0a0a;
+color:white;
+font-family:Arial;
+text-align:center;
+margin:0;
+}
+
+h1 {
+margin-top:25px;
+}
+
+button {
+background:#333;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:10px;
+cursor:pointer;
+margin:15px;
+}
+
+.container {
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+gap:20px;
+padding:30px;
+max-width:900px;
+margin:0 auto;
+}
+
+.card {
+background:#1b1b1b;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 10px #000;
+transition:.25s;
+}
+
+.card:hover {
+transform:translateY(-8px) scale(1.02);
+}
+
+img {
+width:140px;
+height:140px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.value {
+color:#00ffcc;
+font-weight:bold;
+margin-top:10px;
+}
+
+.stats {
+color:#ccc;
+margin-top:10px;
+line-height:1.4;
+}
+
+a {
+color:white;
+text-decoration:none;
+display:inline-block;
+margin-top:20px;
+margin-bottom:30px;
+}
+
+@media(max-width:800px){
+.container {
+grid-template-columns: 1fr;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>⚪ Common Values</h1>
+
+<!-- Adicionado ID para o controle da seta -->
+<button id="sortBtn" onclick="sortValues()">Sort by Value ⬇</button>
+
+<div class="container">
+
+
+<!-- LIRILILARILA -->
+<div class="card">
+<img src="imagens/Lirililarila.png">
+<h2>Lirililarila</h2>
+<p class="value">2C</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+
+<!-- TIM CHEESE -->
+<div class="card">
+<img src="imagens/timcheese.png">
+<h2>Tim Cheese</h2>
+<p class="value">3C</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+
+<!-- FLURIFLURA -->
+<div class="card">
+<img src="imagens/Fluriflura.png">
+<h2>Fluriflura</h2>
+<p class="value">4C</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+
+<!-- TALPADIFERO -->
+<div class="card">
+<img src="imagens/talpadifero.png">
+<h2>Talpadifero</h2>
+<p class="value">5C</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+
+<!-- SIVNINA -->
+<div class="card">
+<img src="imagens/sivninabombardino.png">
+<h2>Sivnina Bombardino</h2>
+<p class="value">6C</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+
+<!-- PIPI KIWI -->
+<div class="card">
+<img src="imagens/Pipi_Kiwi.png">
+<h2>Pipi Kiwi</h2>
+<p class="value">7C</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+
+<!-- NOOBINI NORMAL -->
+<div class="card">
+<img src="imagens/noobini.png">
+<h2>Noobini Pizzanini</h2>
+<p class="value">1C</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+
+<!-- NOOBINI SANTANINI -->
+<div class="card">
+<img src="imagens/Noobini_Santanini.png">
+<h2>Noobini Santanini</h2>
+<p class="value">50C</p>
+<div class="stats">
+<p>Demand: 1/11</p>
+<p>Rarity: 2/11</p>
+<p>Status: Event</p>
+</div>
+</div>
+
+
+<!-- TARTARAGNOO -->
+<div class="card">
+<img src="imagens/Tartaragnoo.png">
+<h2>Tartaragnoo</h2>
+<p class="value">100C</p>
+<div class="stats">
+<p>Demand: 3/11</p>
+<p>Rarity: 3/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+
+<!-- PIPI CORNI -->
+<div class="card">
+<img src="imagens/PipiCorni.png">
+<h2>Pipi Corni</h2>
+<p class="value">3C</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Underpaid For ↘️</p>
+</div>
+</div>
+
+
+<!-- HOLY ARPEA -->
+<div class="card">
+<img src="imagens/holyarpea.png">
+<h2>Holy Arpea</h2>
+<p class="value">75C</p>
+<div class="stats">
+<p>Demand: 1/11</p>
+<p>Rarity: 2/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+
+<!-- RACCOONI -->
+<div class="card">
+<img src="imagens/raccoonijandelini.png">
+<h2>Raccooni Jandelini</h2>
+<p class="value">175C</p> <!-- Adicionado o C por padrão visual -->
+<div class="stats">
+<p>Demand: 4/11</p>
+<p>Rarity: 6/11</p>
+<p>Status: Event</p>
+</div>
+</div>
+
+</div>
+
+<!-- Botão de voltar adicionado aqui -->
+<a href="index.html">⬅ voltar</a>
+
+<script>
+let ascending = false;
+
+function sortValues() {
+    const container = document.querySelector(".container");
+    const cards = Array.from(document.querySelectorAll(".card"));
+    const button = document.getElementById("sortBtn");
+
+    cards.sort((a, b) => {
+        // Remove qualquer caractere não numérico para evitar bugs com "C" ou espaços vazio
+        let va = parseInt(a.querySelector(".value").textContent.replace(/\D/g, '')) || 0;
+        let vb = parseInt(b.querySelector(".value").textContent.replace(/\D/g, '')) || 0;
+
+        return ascending ? va - vb : vb - va;
+    });
+
+    cards.forEach(c => container.appendChild(c));
+
+    // Altera a direção da ordenação para o próximo clique e muda o texto do botão
+    ascending = !ascending;
+    button.innerHTML = ascending ? "Sort by Value ⬆" : "Sort by Value ⬇";
+}
+</script>
+
+</body>
+
+</html>

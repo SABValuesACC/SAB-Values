@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutations - SAB Values</title>
+
+    <style>
+        body {
+            background: #0a0a0c;
+            color: #f3f4f6;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            text-align: center;
+            padding-bottom: 60px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #00ffcc;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 25px rgba(0, 255, 204, 0.2);
+        }
+
+        /* BOTÃO PREMIUM */
+        button {
+            margin: 20px 10px;
+            padding: 12px 28px;
+            border: 1px solid #27272a;
+            border-radius: 12px;
+            background: #141418;
+            color: #f3f4f6;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background: #00ffcc;
+            color: #0a0a0c;
+            border-color: #00ffcc;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+        }
+
+        /* GRID RESPONSIVA */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* CARD CLEAN STYLE */
+        .card {
+            background: #141418;
+            border: 1px solid #27272a;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #00ffcc;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin: 15px 0 10px 0;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* TOOLTIP ! */
+        .info {
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: help;
+            font-weight: bold;
+        }
+
+        .value {
+            color: #00ffcc;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 5px 0 15px 0;
+            background: rgba(0, 255, 204, 0.05);
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .stats {
+            width: 100%;
+            border-top: 1px solid #27272a;
+            padding-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        .stats p {
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* BADGES DOS STATUS */
+        .status-overpaid { color: #22c55e; background: rgba(34, 197, 94, 0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+        .status-stable { color: #9ca3af; background: rgba(156, 163, 175, 0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+        .status-rare { color: #a855ff; background: rgba(168, 85, 247, 0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+        .status-underpaid { color: #ef4444; background: rgba(239, 68, 68, 0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+
+        /* LINK DE VOLTAR */
+        .back-link {
+            display: inline-block;
+            color: #64748b;
+            text-decoration: none;
+            margin-top: 40px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: #00ffcc;
+        }
+
+        /* RESPONSIVIDADE ADAPTÁVEL */
+        @media(max-width: 1000px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 650px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>⚡ Mutations</h1>
+
+    <button id="sortBtn" onclick="sortValues()">
+        Sort by Value ⬇
+    </button>
+
+    <div class="grid">
+
+        <!-- Divine -->
+        <div class="card">
+            <img src="imagens/mutations/Divine_Mutation_Icon.png" alt="Divine Mutation">
+            <h2>Divine <span class="info" title="Mutação divina extremamente valiosa.">!</span></h2>
+            <p class="value">Value Increase: +150%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>9/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <!-- Galaxy -->
+        <div class="card">
+            <img src="imagens/mutations/Galaxy_Mutation_Icon.png" alt="Galaxy Mutation">
+            <h2>Galaxy <span class="info" title="Efeito galáctico com alta demanda.">!</span></h2>
+            <p class="value">Value Increase: +130%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>8/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <!-- Yin Yang -->
+        <div class="card">
+            <img src="imagens/mutations/Yin_Yang_Mutation_Icon.png" alt="Yin Yang Mutation">
+            <h2>Yin Yang <span class="info" title="Mutação de equilíbrio estético raro.">!</span></h2>
+            <p class="value">Value Increase: +130%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>8/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <!-- Phantom -->
+        <div class="card">
+            <img src="imagens/mutations/Phantom_Mutation_Icon.png" alt="Phantom Mutation">
+            <h2>Phantom <span class="info" title="Visual fantasmagórico translúcido.">!</span></h2>
+            <p class="value">Value Increase: +175%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>9/11</span></p>
+                <p><span>Status:</span> <span class="status-rare">Flutuando ↔️</span></p>
+            </div>
+        </div>
+
+        <!-- Rainbow -->
+        <div class="card">
+            <img src="imagens/mutations/Rainbow_Mutation_Icon.png" alt="Rainbow Mutation">
+            <h2>Rainbow <span class="info" title="Efeito arco-íris dinâmico clássico.">!</span></h2>
+            <p class="value">Value Increase: +100%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>7/11</span></p>
+                <p><span>Status:</span> <span class="status-overpaid">Overpaid For ↗️</span></p>
+            </div>
+        </div>
+
+        <!-- Diamond -->
+        <div class="card">
+            <img src="imagens/mutations/Diamond_Mutation_Icon.png" alt="Diamond Mutation">
+            <h2>Diamond <span class="info" title="Mutação brilhante de diamante.">!</span></h2>
+            <p class="value">Value Increase: +50%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <!-- Gold -->
+        <div class="card">
+            <img src="imagens/mutations/Gold_Mutation_Icon.png" alt="Gold Mutation">
+            <h2>Gold <span class="info" title="Estética de ouro puro reluzente.">!</span></h2>
+            <p class="value">Value Increase: +25%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>2/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <!-- Cyber -->
+        <div class="card">
+            <img src="imagens/mutations/Cyber_Mutation_Icon.png" alt="Cyber Mutation">
+            <h2>Cyber <span class="info" title="Mutação tecnológica futurista.">!</span></h2>
+            <p class="value">Value Increase: +120%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>8/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <!-- Bloodrot -->
+        <div class="card">
+            <img src="imagens/mutations/Bloodrot_Mutation_Icon.png" alt="Bloodrot Mutation">
+            <h2>Bloodrot <span class="info" title="Mutação sombria com aura vermelha.">!</span></h2>
+            <p class="value">Value Increase: +135%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>8/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <!-- Lava -->
+        <div class="card">
+            <img src="imagens/mutations/Lava_Mutation_Icon.png" alt="Lava Mutation">
+            <h2>Lava <span class="info" title="Efeito vulcânico animado ardente.">!</span></h2>
+            <p class="value">Value Increase: +125%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>8/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <!-- Cursed -->
+        <div class="card">
+            <img src="imagens/mutations/Cursed_Mutation_Icon.png" alt="Cursed Mutation">
+            <h2>Cursed <span class="info" title="Efeito amaldiçoado com aura escura.">!</span></h2>
+            <p class="value">Value Increase: +105%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>8/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <!-- Radioactive -->
+        <div class="card">
+            <img src="imagens/mutations/Radioactive_Mutation_Icon.png" alt="Radioactive Mutation">
+            <h2>Radioactive <span class="info" title="Aura verde brilhante tóxica.">!</span></h2>
+            <p class="value">Value Increase: +115%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>8/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <!-- Candy -->
+        <div class="card">
+            <img src="imagens/mutations/Candy_Mutation_Icon.png" alt="Candy Mutation">
+            <h2>Candy <span class="info" title="Efeito doce e colorido festivo.">!</span></h2>
+            <p class="value">Value Increase: +125%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>8/11</span></p>
+                <p><span>Status:</span> <span class="status-overpaid">Overpaid For ↗️</span></p>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="index.html" class="back-link">⬅ voltar</a>
+
+    <script>
+        let ascending = false;
+
+        function sortValues() {
+            const grid = document.querySelector(".grid");
+            const cards = Array.from(document.querySelectorAll(".card"));
+            const button = document.getElementById("sortBtn");
+
+            cards.sort((a, b) => {
+                const valA = parseInt(a.querySelector(".value").textContent.replace(/\D/g, '')) || 0;
+                const valB = parseInt(b.querySelector(".value").textContent.replace(/\D/g, '')) || 0;
+                return ascending ? valA - valB : valB - valA;
+            });
+
+            cards.forEach(card => grid.appendChild(card));
+
+            ascending = !ascending;
+            button.innerHTML = ascending ? "Sort by Value ⬆" : "Sort by Value ⬇";
+        }
+    </script>
+</body>
+
+</html>

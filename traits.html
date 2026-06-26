@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traits - SAB Values</title>
+
+    <style>
+        body {
+            background: #0a0a0c;
+            color: #f3f4f6;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            text-align: center;
+            padding-bottom: 60px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #00ffcc;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 25px rgba(0, 255, 204, 0.2);
+        }
+
+        /* BOTÃO PREMIUM */
+        button {
+            margin: 20px 10px;
+            padding: 12px 28px;
+            border: 1px solid #27272a;
+            border-radius: 12px;
+            background: #141418;
+            color: #f3f4f6;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background: #00ffcc;
+            color: #0a0a0c;
+            border-color: #00ffcc;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+        }
+
+        /* GRID RESPONSIVA */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* CARD CLEAN STYLE */
+        .card {
+            background: #141418;
+            border: 1px solid #27272a;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #00ffcc;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin: 15px 0 10px 0;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* TOOLTIP ! */
+        .info {
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: help;
+            font-weight: bold;
+        }
+
+        .value {
+            color: #00ffcc;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 5px 0 15px 0;
+            background: rgba(0, 255, 204, 0.05);
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .stats {
+            width: 100%;
+            border-top: 1px solid #27272a;
+            padding-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        .stats p {
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* BADGES AUTOMÁTICOS PARA STATUS */
+        .stats p:has(text):after {
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        
+        /* Fallback simples para estilizar os status baseados no texto interno */
+        .status-overpaid { color: #22c55e; background: rgba(34, 197, 94, 0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+        .status-stable { color: #9ca3af; background: rgba(156, 163, 175, 0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+        .status-rare { color: #a855ff; background: rgba(168, 85, 247, 0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+        .status-underpaid { color: #ef4444; background: rgba(239, 68, 68, 0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+
+        /* LINK DE VOLTAR */
+        .back-link {
+            display: inline-block;
+            color: #64748b;
+            text-decoration: none;
+            margin-top: 40px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: #00ffcc;
+        }
+
+        /* RESPONSIVIDADE ADAPTÁVEL */
+        @media(max-width: 1000px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 650px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>✨ Traits</h1>
+
+    <button id="sortBtn" onclick="sortValues()">
+        Sort by Value ⬇
+    </button>
+
+    <div class="grid">
+
+        <div class="card">
+            <img src="imagens/traits/1YR_Icon.png" alt="1YR">
+            <h2>1YR Trait <span class="info" title="Trait comemorativo raro.">!</span></h2>
+            <p class="value">Value Increase: +120%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>9/11</span></p>
+                <p><span>Status:</span> <span class="status-overpaid">Overpaid For ↗️</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/RainbowBalloon.png" alt="Rainbow Balloon">
+            <h2>Rainbow Balloon <span class="info" title="Trait de evento com boa valorização.">!</span></h2>
+            <p class="value">Value Increase: +90%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>9/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/PinkEgg.png" alt="Pink Egg">
+            <h2>Pink Egg <span class="info" title="Trait de evento limitado.">!</span></h2>
+            <p class="value">Value Increase: +80%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>6/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/OrangeEgg.png" alt="Orange Egg">
+            <h2>Orange Egg <span class="info" title="Trait de evento.">!</span></h2>
+            <p class="value">Value Increase: +60%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>5/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/PinkBalloon.png" alt="Pink Balloon">
+            <h2>Pink Balloon <span class="info">!</span></h2>
+            <p class="value">Value Increase: +80%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/RedBalloon.png" alt="Red Balloon">
+            <h2>Red Balloon <span class="info">!</span></h2>
+            <p class="value">Value Increase: +60%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/BlueBalloon.png" alt="Blue Balloon">
+            <h2>Blue Balloon <span class="info">!</span></h2>
+            <p class="value">Value Increase: +40%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/GreenBalloon.png" alt="Green Balloon">
+            <h2>Green Balloon <span class="info">!</span></h2>
+            <p class="value">Value Increase: +20%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/OrangeBalloon.png" alt="Orange Balloon">
+            <h2>Orange Balloon <span class="info">!</span></h2>
+            <p class="value">Value Increase: +10%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/10b.png" alt="10B">
+            <h2>10B Trait <span class="info">!</span></h2>
+            <p class="value">Value Increase: +130%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>9/11</span></p>
+                <p><span>Status:</span> <span class="status-rare">Rare</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Extincty.png" alt="Extincty">
+            <h2>Extincty <span class="info">!</span></h2>
+            <p class="value">Value Increase: +60%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>6/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Witchhat.png" alt="Witch Hat">
+            <h2>Witch Hat <span class="info">!</span></h2>
+            <p class="value">Value Increase: +65%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>5/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/GraveYard-RIP-Tombstone.png" alt="Graveyard">
+            <h2>Graveyard <span class="info">!</span></h2>
+            <p class="value">Value Increase: +50%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>6/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/SantaHatIcon.png" alt="Santa Hat">
+            <h2>Santa Hat <span class="info">!</span></h2>
+            <p class="value">Value Increase: +75%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>5/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/BunnyEars.png" alt="Bunny Ears">
+            <h2>Bunny Ears <span class="info">!</span></h2>
+            <p class="value">Value Increase: +35%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>5/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Jack-o-Lantern_Pet_Trait.png" alt="Jack-o-Lantern">
+            <h2>Jack-o-Lantern <span class="info">!</span></h2>
+            <p class="value">Value Increase: +70%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>7/11</span></p>
+                <p><span>Status:</span> <span class="status-rare">Rare</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Luckytrait.png" alt="Lucky">
+            <h2>Lucky <span class="info">!</span></h2>
+            <p class="value">Value Increase: +85%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>8/11</span></p>
+                <p><span>Status:</span> <span class="status-rare">Rare</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/HaloTrait.png" alt="Halo">
+            <h2>Halo <span class="info">!</span></h2>
+            <p class="value">Value Increase: +85%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>8/11</span></p>
+                <p><span>Status:</span> <span class="status-rare">Rare</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/2026Trait.png" alt="2026 Trait">
+            <h2>2026 Trait <span class="info">!</span></h2>
+            <p class="value">Value Increase: +70%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>7/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/ChocolateTrait.png" alt="Chocolate">
+            <h2>Chocolate <span class="info">!</span></h2>
+            <p class="value">Value Increase: +70%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>5/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Reindeer.png" alt="Reindeer">
+            <h2>Reindeer <span class="info">!</span></h2>
+            <p class="value">Value Increase: +75%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>7/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Strawberry.png" alt="Strawberry">
+            <h2>Strawberry <span class="info">!</span></h2>
+            <p class="value">Value Increase: +250%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>11/11</span></p>
+                <p><span>Status:</span> <span class="status-overpaid">Overpaid For ↗️</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/TraitDoMeowl.png" alt="Meowl Trait">
+            <h2>Meowl Trait <span class="info">!</span></h2>
+            <p class="value">Value Increase: +225%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>10/11</span></p>
+                <p><span>Status:</span> <span class="status-overpaid">Overpaid For ↗️</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/TraitDoJonhPork.png" alt="John Pork Trait">
+            <h2>John Pork Trait <span class="info">!</span></h2>
+            <p class="value">Value Increase: +200%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>10/11</span></p>
+                <p><span>Status:</span> <span class="status-overpaid">Overpaid For ↗️</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/TraitDoSkibidi.png" alt="Skibidi Trait">
+            <h2>Skibidi Trait <span class="info">!</span></h2>
+            <p class="value">Value Increase: +175%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>10/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Sleepy.png" alt="Sleepy">
+            <h2>Sleepy <span class="info">!</span></h2>
+            <p class="value">Value Increase: +120%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>10/11</span></p>
+                <p><span>Status:</span> <span class="status-overpaid">Overpaid For ↗️</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Taco.png" alt="Taco">
+            <h2>Taco <span class="info">!</span></h2>
+            <p class="value">Value Increase: +20%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>3/11</span></p>
+                <p><span>Status:</span> <span class="status-underpaid">Underpaid For ↘️</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Alienevent.png" alt="Alien Event">
+            <h2>Alien Event <span class="info">!</span></h2>
+            <p class="value">Value Increase: +35%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>6/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Bubblegum.png" alt="Bubblegum">
+            <h2>Bubblegum <span class="info">!</span></h2>
+            <p class="value">Value Increase: +35%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/EvilTungTungSahur.png" alt="Evil Tung Tung Sahur">
+            <h2>Evil Tung Tung Sahur <span class="info">!</span></h2>
+            <p class="value">Value Increase: +50%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>5/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/CrabClaw.png" alt="Crab Claw">
+            <h2>Crab Claw <span class="info">!</span></h2>
+            <p class="value">Value Increase: +15%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>3/11</span></p>
+                <p><span>Status:</span> <span class="status-underpaid">Underpaid For ↘️</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Glitch.png" alt="Glitch">
+            <h2>Glitch <span class="info">!</span></h2>
+            <p class="value">Value Increase: +35%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Disco.png" alt="Disco">
+            <h2>Disco <span class="info">!</span></h2>
+            <p class="value">Value Increase: +40%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>5/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Dragon.png" alt="Dragon">
+            <h2>Dragon <span class="info">!</span></h2>
+            <p class="value">Value Increase: +120%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>9/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Nyan.png" alt="Nyan">
+            <h2>Nyan <span class="info">!</span></h2>
+            <p class="value">Value Increase: +25%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Fireworks.png" alt="Fireworks">
+            <h2>Fireworks <span class="info">!</span></h2>
+            <p class="value">Value Increase: +90%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>8/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Lance.png" alt="Lance">
+            <h2>Lance <span class="info">!</span></h2>
+            <p class="value">Value Increase: +80%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>9/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Fire.png" alt="Fire">
+            <h2>Fire <span class="info">!</span></h2>
+            <p class="value">Value Increase: +45%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>2/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Granny.png" alt="Granny">
+            <h2>Granny <span class="info">!</span></h2>
+            <p class="value">Value Increase: +70%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>6/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Burger_Trait.png" alt="Burger">
+            <h2>Burger <span class="info">!</span></h2>
+            <p class="value">Value Increase: +60%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Mexico_Hat.png" alt="Mexico Hat">
+            <h2>Mexico Hat <span class="info">!</span></h2>
+            <p class="value">Value Increase: +45%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>2/11</span></p>
+                <p><span>Status:</span> <span class="status-underpaid">Underpaid For ↘️</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Indonesian.png" alt="Indonesian">
+            <h2>Indonesian <span class="info">!</span></h2>
+            <p class="value">Value Increase: +55%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>2/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Brazil.png" alt="Brazil">
+            <h2>Brazil <span class="info">!</span></h2>
+            <p class="value">Value Increase: +80%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>6/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Shark_Fin.png" alt="Shark Fin">
+            <h2>Shark Fin <span class="info">!</span></h2>
+            <p class="value">Value Increase: +30%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>3/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Bombardiro.png" alt="Bombardiro">
+            <h2>Bombardiro <span class="info">!</span></h2>
+            <p class="value">Value Increase: +20%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>1/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Comet2.png" alt="Comet 2">
+            <h2>Comet 2 <span class="info">!</span></h2>
+            <p class="value">Value Increase: +65%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/MatteoHat.png" alt="Matteo Hat">
+            <h2>Matteo Hat <span class="info">!</span></h2>
+            <p class="value">Value Increase: +40%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Spider.png" alt="Spider">
+            <h2>Spider <span class="info">!</span></h2>
+            <p class="value">Value Increase: +35%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>4/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Tie.png" alt="Tie">
+            <h2>Tie <span class="info">!</span></h2>
+            <p class="value">Value Increase: +70%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>6/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/aymigatito.png" alt="Ay Mi Gatito">
+            <h2>Ay Mi Gatito <span class="info">!</span></h2>
+            <p class="value">Value Increase: +40%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>3,5/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagens/traits/Chicleteirabicicleteira.png" alt="Chicleteira Bicicleteira">
+            <h2>Chicleteira Bicicleteira <span class="info">!</span></h2>
+            <p class="value">Value Increase: +30%</p>
+            <div class="stats">
+                <p><span>Rarity:</span> <span>2/11</span></p>
+                <p><span>Status:</span> <span class="status-stable">Stable</span></p>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="index.html" class="back-link">⬅ voltar</a>
+
+    <script>
+        let ascending = false;
+
+        function sortValues() {
+            const grid = document.querySelector(".grid");
+            const cards = Array.from(document.querySelectorAll(".card"));
+            const button = document.getElementById("sortBtn");
+
+            cards.sort((a, b) => {
+                const valA = parseInt(a.querySelector(".value").textContent.replace(/\D/g, '')) || 0;
+                const valB = parseInt(b.querySelector(".value").textContent.replace(/\D/g, '')) || 0;
+                return ascending ? valA - valB : valB - valA;
+            });
+
+            cards.forEach(card => grid.appendChild(card));
+
+            ascending = !ascending;
+            button.innerHTML = ascending ? "Sort by Value ⬆" : "Sort by Value ⬇";
+        }
+    </script>
+</body>
+
+</html>

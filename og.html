@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OG - SAB Values</title>
+
+<style>
+body {
+    background: radial-gradient(circle at top, #141105 0%, #050505 100%);
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 50px;
+}
+
+/* Efeito do Texto Preto com Brilho Dourado Animado Passando */
+.animated-title {
+    font-size: 55px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    
+    /* Base preta com contorno dourado */
+    color: #000;
+    -webkit-text-stroke: 1.5px #ffaa00;
+    
+    /* Mascara de Gradiente para o brilho dourado que passa */
+    background: linear-gradient(120deg, transparent 40%, #ffdf6d 50%, transparent 60%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shine 4s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(255, 170, 0, 0.3));
+}
+
+@keyframes shine {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+button {
+    background: linear-gradient(135deg, #222, #111);
+    color: #ffaa00;
+    border: 1px solid #ffaa0044;
+    padding: 12px 28px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 20px;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+button:hover {
+    background: #ffaa00;
+    color: #000;
+    box-shadow: 0 0 15px rgba(255, 170, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Linha isolada para o Spyder Elephant */
+.spyder-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: linear-gradient(145deg, #181818, #0f0f0f);
+    border: 1px solid #222;
+    padding: 25px;
+    width: 280px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Card Destacado do Spyder */
+.card.exclusive-boss {
+    border: 1px solid #ffaa0055;
+    box-shadow: 0 15px 30px rgba(255, 170, 0, 0.1);
+    width: 320px; /* Um pouco maior por imponência */
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #ffaa00, #ff5500);
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: #ffaa0077;
+    box-shadow: 0 15px 35px rgba(255, 170, 0, 0.25);
+}
+
+.img-container {
+    background: #0a0a0a;
+    padding: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    margin-bottom: 15px;
+    border: 1px solid #1a1a1a;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.card:hover img {
+    transform: scale(1.06);
+}
+
+h2 {
+    font-size: 22px;
+    margin: 10px 0;
+    color: #fff;
+}
+
+.info {
+    color: #ffaa00;
+    font-weight: bold;
+    cursor: help;
+    margin-left: 6px;
+    background: rgba(255, 170, 0, 0.1);
+    padding: 2px 8px;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+.value-box {
+    background: rgba(0, 255, 204, 0.05);
+    border: 1px solid rgba(0, 255, 204, 0.2);
+    padding: 8px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.value {
+    color: #00ffcc;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+}
+
+.stats {
+    text-align: left;
+    background: rgba(255,255,255,0.02);
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    border: 1px solid #1a1a1a;
+}
+
+.stats p {
+    margin: 6px 0;
+    display: flex;
+    justify-content: space-between;
+    color: #aaa;
+}
+
+.stats p span {
+    color: #fff;
+    font-weight: bold;
+}
+
+.status-badge {
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.status-badge.overpaid {
+    background: rgba(255, 68, 68, 0.15);
+    color: #ff4444;
+    border: 1px solid rgba(255, 68, 68, 0.3);
+}
+.status-badge.stable {
+    background: rgba(0, 180, 255, 0.15);
+    color: #00b4ff;
+    border: 1px solid rgba(0, 180, 255, 0.3);
+}
+
+.back-btn {
+    color: #888;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 4px;
+}
+
+.back-btn:hover {
+    color: #ffaa00;
+    border-color: #ffaa00;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Título com efeito personalizado animado -->
+<h1 class="animated-title">👑 OG Supremes 👑</h1>
+
+<button id="sortBtn" onclick="sortValues()">Sort by Value ⬇</button>
+
+<!-- SEÇÃO ISOLADA: SPYDER ELEPHANT -->
+<div class="spyder-row">
+    <div class="card exclusive-boss">
+        <div class="img-container">
+            <img src="imagens/spyderelephant.png">
+        </div>
+        <h2>Spyder Elephant<span class="info" title="Obtido de forma totalmente única e lendária. Isolado no topo.">!</span></h2>
+        <div class="value-box">
+            <p class="value">Value: 2.500.000</p>
+        </div>
+        <div class="stats">
+            <p>Demand: <span>11/11</span></p>
+            <p>Rarity: <span>11/11</span></p>
+            <p>Status: <span class="status-badge overpaid">Peak</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- RESTANTE DOS OGS -->
+<div class="container">
+
+    <!-- STRAWBERRY -->
+    <div class="card">
+        <div class="img-container">
+            <img src="imagens/StrawberryElephant.png">
+        </div>
+        <h2>Strawberry Elephant<span class="info" title="OG extremamente raro e muito valorizado.">!</span></h2>
+        <div class="value-box">
+            <p class="value">Value: 200.000</p>
+        </div>
+        <div class="stats">
+            <p>Demand: <span>11/11</span></p>
+            <p>Rarity: <span>11/11</span></p>
+            <p>Status: <span class="status-badge overpaid">Overpaid For</span></p>
+        </div>
+    </div>
+
+    <!-- HEADLESS -->
+    <div class="card">
+        <div class="img-container">
+            <img src="imagens/Headlesshorseman.png">
+        </div>
+        <h2>Headless Horseman<span class="info" title="OG limitado de Halloween.">!</span></h2>
+        <div class="value-box">
+            <p class="value">Value: 350.000</p>
+        </div>
+        <div class="stats">
+            <p>Demand: <span>11/11</span></p>
+            <p>Rarity: <span>11/11</span></p>
+            <p>Status: <span class="status-badge overpaid">Overpaid For</span></p>
+        </div>
+    </div>
+
+    <!-- MEOWL -->
+    <div class="card">
+        <div class="img-container">
+            <img src="imagens/meowl.png">
+        </div>
+        <h2>Meowl<span class="info" title="OG estável e procurado em trades.">!</span></h2>
+        <div class="value-box">
+            <p class="value">Value: 100.000</p>
+        </div>
+        <div class="stats">
+            <p>Demand: <span>10/11</span></p>
+            <p>Rarity: <span>10/11</span></p>
+            <p>Status: <span class="status-badge stable">Stable</span></p>
+        </div>
+    </div>
+
+    <!-- JOHN PORK -->
+    <div class="card">
+        <div class="img-container">
+            <img src="imagens/jonhpork.png">
+        </div>
+        <h2>John Pork<span class="info" title="OG famoso pelo meme e nostalgia.">!</span></h2>
+        <div class="value-box">
+            <p class="value">Value: 75.000</p>
+        </div>
+        <div class="stats">
+            <p>Demand: <span>10/11</span></p>
+            <p>Rarity: <span>10/11</span></p>
+            <p>Status: <span class="status-badge stable">Stable</span></p>
+        </div>
+    </div>
+
+    <!-- SKIBIDI -->
+    <div class="card">
+        <div class="img-container">
+            <img src="imagens/skibiditoilet.png">
+        </div>
+        <h2>Skibidi Toilet<span class="info" title="OG de entrada entre os OGs.">!</span></h2>
+        <div class="value-box">
+            <p class="value">Value: 50.000</p>
+        </div>
+        <div class="stats">
+            <p>Demand: <span>10/11</span></p>
+            <p>Rarity: <span>10/11</span></p>
+            <p>Status: <span class="status-badge stable">Stable</span></p>
+        </div>
+    </div>
+
+</div>
+
+<a href="index.html" class="back-btn">⬅ voltar para a home</a>
+
+<script>
+let ascending = false;
+
+function sortValues() {
+    // Agora o script junta tanto o card do topo quanto a grid principal para ordenar sem quebrar o layout isolado!
+    const container = document.querySelector(".container");
+    const spyderRow = document.querySelector(".spyder-row");
+    const cards = Array.from(document.querySelectorAll(".card"));
+    const button = document.getElementById("sortBtn");
+
+    cards.sort((a, b) => {
+        let va = parseInt(a.querySelector(".value").textContent.replace(/Value:|\./g, '').trim()) || 0;
+        let vb = parseInt(b.querySelector(".value").textContent.replace(/Value:|\./g, '').trim()) || 0;
+
+        return ascending ? va - vb : vb - va;
+    });
+
+    // Se estiver ordenando do maior para o menor, recoloca o maior de todos (Spyder) de volta no topo isolado
+    if (!ascending) {
+        const topCard = cards.shift(); // Remove o primeiro (Spyder) da lista geral
+        spyderRow.appendChild(topCard); // Coloca ele na row isolada
+    } else {
+        // Se for do menor para o maior, move o Spyder para dentro da grid comum lá pro fim da fila
+        if(spyderRow.children.length > 0) {
+            const cardElement = spyderRow.children[0];
+            container.appendChild(cardElement);
+        }
+    }
+
+    // Renderiza o resto dos cards ordenados dentro da grid inferior
+    cards.forEach(card => container.appendChild(card));
+
+    ascending = !ascending;
+    button.innerHTML = ascending ? "Sort by Value ⬆" : "Sort by Value ⬇";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Epic - SAB Values</title>
+
+<style>
+
+body {
+background:#07060f;
+color:white;
+font-family:Arial;
+text-align:center;
+margin:0;
+}
+
+h1 {
+color:#b46bff;
+margin-top:25px;
+}
+
+button {
+background:#333;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:10px;
+cursor:pointer;
+margin:15px;
+transition:.2s;
+}
+
+button:hover {
+background:#555;
+}
+
+.container {
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+gap:20px;
+padding:30px;
+max-width:1100px;
+margin:0 auto;
+}
+
+.card {
+background:#15102a;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 12px #000;
+transition:.25s;
+border:1px solid #3a2a66;
+}
+
+.card:hover {
+transform:translateY(-8px) scale(1.02);
+border-color:#b46bff;
+}
+
+img {
+width:140px;
+height:140px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.value {
+color:#00ffcc;
+font-weight:bold;
+margin-top:10px;
+}
+
+.stats {
+color:#cfcfcf;
+margin-top:10px;
+font-size:14px;
+line-height:1.4;
+}
+
+a {
+text-decoration:none;
+color:white;
+}
+
+.back {
+display:inline-block;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🟣 Epic Values</h1>
+
+<button onclick="sortValues()">Sort by Value ⬇</button>
+
+<div class="container">
+
+<div class="card">
+<img src="imagens/Trulimero_Trulicina.png">
+<h2>Trulimero Trulicina</h2>
+<p class="value">1</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/Avocadini_Antilopini.png">
+<h2>Avocadini Antilopini</h2>
+<p class="value">1</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/brrbrrpata.png">
+<h2>Brr Brr Patapim</h2>
+<p class="value">1</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/Cappuccino_Assassino.png">
+<h2>Cappuccino Assassino</h2>
+<p class="value">1</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/WomboRollo.png">
+<h2>Wombo Rollo</h2>
+<p class="value">1</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/Salamino-Penguino.png">
+<h2>Salamino Penguino</h2>
+<p class="value">1</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/AvocadiniGuffo.png">
+<h2>Avocadini Guffo</h2>
+<p class="value">3</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 1/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/Bananita_Dolphinita.png">
+<h2>Bananita Dolphinita</h2>
+<p class="value">1</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/Perochello_Lemonchello.png">
+<h2>Perochello Lemonchello</h2>
+<p class="value">1</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/Penguino_Cocosino.png">
+<h2>Penguino Cocosino</h2>
+<p class="value">1</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 0/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/PenguinTree.png">
+<h2>Penguin Tree</h2>
+<p class="value">4</p>
+<div class="status">
+<p>Demand: 0/11</p>
+<p>Rarity: 1/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/DoiDoiDo.png">
+<h2>Doi Doi Do</h2>
+<p class="value">10</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 2/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/Gato_Celesto.png">
+<h2>Gato Celesto</h2>
+<p class="value">1</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 1/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/mangoliniparrocini.png">
+<h2>Mangolini Parrocini</h2>
+<p class="value">3</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 1/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/Ti_ti_ti_shaur.png">
+<h2>Ti Ti Ti Sahur</h2>
+<p class="value">3</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 1/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+<div class="card">
+<img src="imagens/MalameAmarele.png">
+<h2>Malame Amarele</h2>
+<p class="value">15</p>
+<div class="stats">
+<p>Demand: 0/11</p>
+<p>Rarity: 1/11</p>
+<p>Status: Stable</p>
+</div>
+</div>
+
+</div>
+
+<a href="index.html">⬅ voltar</a>
+
+<script>
+function sortValues() {
+const container = document.querySelector(".container");
+const cards = Array.from(document.getElementsByClassName("card"));
+
+cards.sort((a,b)=>{
+return parseFloat(b.querySelector(".value").textContent) - parseFloat(a.querySelector(".value").textContent);
+});
+
+cards.forEach(c => container.appendChild(c));
+}
+</script>
+
+</body>
+
+</html>

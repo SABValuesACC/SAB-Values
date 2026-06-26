@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAB Values</title>
+
+<style>
+body {
+    background: #0a0a0c;
+    color: #f3f4f6;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* HEADER CLEAN */
+.header {
+    padding: 50px 20px;
+    background: linear-gradient(180deg, #141418 0%, #0a0a0c 100%);
+    border-bottom: 1px solid #1f1f24;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #ffd700;
+    margin: 0;
+    letter-spacing: 1px;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+/* ESTILO DO EASTER EGG NO TÍTULO */
+#b-easter-egg {
+    cursor: pointer;
+    user-select: none;
+    transition: text-shadow 0.2s ease;
+}
+
+#b-easter-egg:hover {
+    text-shadow: 0 0 25px #ffd700;
+}
+
+.subtitle {
+    color: #9ca3af;
+    font-size: 16px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+/* SEARCH */
+.search-wrapper {
+    margin: 30px auto;
+}
+
+#searchBox {
+    padding: 14px 20px;
+    width: 320px;
+    max-width: 80%;
+    border-radius: 12px;
+    border: 1px solid #27272a;
+    background: #141418;
+    color: white;
+    outline: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#searchBox:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+    width: 350px;
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* CARD CLEAN STYLE */
+.card {
+    width: 240px;
+    padding: 25px;
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card h2 {
+    font-size: 22px;
+    margin: 0 0 8px 0;
+}
+
+.card p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
+}
+
+/* BUTTON */
+button {
+    background: #1f1f24;
+    color: #f3f4f6;
+    border: 1px solid #27272a;
+    padding: 10px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background: #ffd700;
+    color: #0a0a0c;
+    border-color: #ffd700;
+}
+
+/* RARIDADES CORES MODERNAS */
+.common { background: #18181b; border: 1px solid #3f3f46; }
+.rare { background: rgba(6, 27, 48, 0.8); border: 1px solid #00aaff; }
+.epic { background: rgba(38, 11, 69, 0.8); border: 1px solid #a855ff; }
+.legendary { background: rgba(61, 48, 0, 0.8); border: 1px solid #ffd700; }
+.mythic { background: rgba(66, 0, 0, 0.8); border: 1px solid #ef4444; }
+
+.god {
+    background: linear-gradient(135deg, #006633, #004466, #441166);
+    background-size: 200% 200%;
+    border: 1px solid #00ff99;
+    animation: godGlow 8s ease infinite;
+}
+
+.secret { background: #09090b; border: 1px solid #71717a; }
+.og { background: rgba(24, 16, 0, 0.8); border: 1px solid #f59e0b; }
+
+.trait {
+    background: linear-gradient(135deg, #452200, #804c00);
+    border: 1px solid #f97316;
+}
+
+.mutation {
+    background: linear-gradient(135deg, #004444, #222233, #440066);
+    background-size: 200% 200%;
+    border: 1px solid #06b6d4;
+    animation: godGlow 8s ease infinite;
+}
+
+/* CARPETE CLEAN */
+.carpet-wrapper {
+    margin-top: 60px;
+    padding: 30px 0;
+    background: #0f0505;
+    border-top: 1px solid #450a0a;
+    border-bottom: 1px solid #450a0a;
+    overflow: hidden;
+}
+
+#metaText {
+    color: #ef4444;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.carpet-track {
+    display: flex;
+    gap: 25px;
+    width: max-content;
+    animation: scroll 35s linear infinite;
+}
+
+.carpet-group {
+    display: flex;
+    gap: 25px;
+}
+
+.carpet-track img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+    border: 1px solid #450a0a;
+}
+
+.carpet-track img:hover {
+    transform: scale(1.1) translateY(-5px);
+    border-color: #ef4444;
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.2);
+}
+
+/* ANIMAÇÕES */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes godGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 80px;
+    color: #4b5563;
+    font-size: 14px;
+    padding-bottom: 30px;
+}
+
+/* ESTILOS DE TELA CHEIA DO EASTER EGG */
+#belle-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 12, 0.96);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#belle-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#belle-overlay img {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 24px;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#belle-overlay.active img {
+    transform: scale(1);
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+    <!-- Letra B separada para detectar os cliques -->
+    <h1>🧠 SA<span id="b-easter-egg">B</span> VALUES</h1>
+    <p class="subtitle">Steal A Brainrot Trading Values</p>
+    <a class="about-btn" href="about.html">
+        <button>About Us</button>
+    </a>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrapper">
+    <input id="searchBox" placeholder="Pesquisar brainrot...">
+</div>
+
+<!-- CONTAINER PRINCIPAL -->
+<div class="container">
+
+    <a href="comuns.html" class="card common">
+        <h2>⚪ Common</h2>
+        <p>Comuns do jogo</p>
+    </a>
+
+    <a href="rare.html" class="card rare">
+        <h2>🔵 Rare</h2>
+        <p>Valores baixos</p>
+    </a>
+
+    <a href="epic.html" class="card epic">
+        <h2>🟣 Epic</h2>
+        <p>Médio tier</p>
+    </a>
+
+    <a href="legendary.html" class="card legendary">
+        <h2>🟡 Legendary</h2>
+        <p>Mid-high tier</p>
+    </a>
+
+    <a href="mythic.html" class="card mythic">
+        <h2>🔴 Mythic</h2>
+        <p>Altos valores</p>
+    </a>
+
+    <a href="god.html" class="card god">
+        <h2>🟢 Brainrot God</h2>
+        <p>Endgame</p>
+    </a>
+
+    <a href="secreto.html" class="card secret">
+        <h2>⚫ Secret</h2>
+        <p>Itens raros</p>
+    </a>
+
+    <a href="og.html" class="card og">
+        <h2>👑 OG</h2>
+        <p>Top tier</p>
+    </a>
+
+    <!-- EXTRAS -->
+    <div style="width:100%; margin-top:30px;">
+        <h2 style="color:#64748b; font-size: 20px;">⚙️ Extras</h2>
+    </div>
+
+    <a href="traits.html" class="card trait">
+        <h2>🌮 Traits</h2>
+        <p>Eventos e bônus dos Brainrots</p>
+    </a>
+
+    <a href="mutations.html" class="card mutation">
+        <h2>💎 Mutations</h2>
+        <p>Versões especiais dos Brainrots</p>
+    </a>
+
+</div>
+
+<!-- CARPETE METAGAME -->
+<div class="carpet-wrapper">
+    <h2 id="metaText">🔥 Meta atual 🔥</h2>
+    <div class="carpet-track">
+        <div class="carpet-group">
+            <a href="og.html#spyderelephant"><img src="imagens/spyderelephant.png" data-name="Spyder Elephant"></a>
+            <a href="og.html#strawberryelephant"><img src="imagens/StrawberryElephant.png" data-name="Strawberry Elephant"></a>
+            <a href="og.html#headlesshorseman"><img src="imagens/Headlesshorseman.png" data-name="Headless Horseman"></a>
+            <a href="og.html#meowl"><img src="imagens/meowl.png" data-name="Meowl"></a>
+            <a href="og.html#jonhpork"><img src="imagens/jonhpork.png" data-name="John Pork"></a>
+            <a href="og.html#skibiditoilet"><img src="imagens/skibiditoilet.png" data-name="Skibidi Toilet"></a>
+            <a href="secreto.html#dragoncanelonni"><img src="imagens/dragoncanelonni.png" data-name="Dragon Cannelloni"></a>
+            <a href="secreto.html#cerberus"><img src="imagens/Cerberus.png" data-name="Cerberus"></a>
+        </div>
+        <div class="carpet-group">
+            <a href="og.html#spyderelephant"><img src="imagens/spyderelephant.png" data-name="Spyder Elephant"></a>
+            <a href="og.html#strawberryelephant"><img src="imagens/StrawberryElephant.png" data-name="Strawberry Elephant"></a>
+            <a href="og.html#headlesshorseman"><img src="imagens/Headlesshorseman.png" data-name="Headless Horseman"></a>
+            <a href="og.html#meowl"><img src="imagens/meowl.png" data-name="Meowl"></a>
+            <a href="og.html#jonhpork"><img src="imagens/jonhpork.png" data-name="John Pork"></a>
+            <a href="og.html#skibiditoilet"><img src="imagens/skibiditoilet.png" data-name="Skibidi Toilet"></a>
+            <a href="secreto.html#dragoncanelonni"><img src="imagens/dragoncanelonni.png" data-name="Dragon Cannelloni"></a>
+            <a href="secreto.html#cerberus"><img src="imagens/Cerberus.png" data-name="Cerberus"></a>
+        </div>
+    </div>
+</div>
+
+<!-- CAPA OCULTA DA BELLE -->
+<div id="belle-overlay">
+    <img src="eazteregg/belleEggz.jpeg" alt="Belle">
+</div>
+
+<!-- PLAYER DO MIAU -->
+<audio id="belle-audio" src="eazteregg/bellemiau.mp3"></audio>
+
+<!-- SCRIPT DE BUSCA INTEGRADO + EASTER EGG -->
+<script>
+const searchBox = document.getElementById("searchBox");
+const cards = document.querySelectorAll(".card");
+const carpetItems = document.querySelectorAll(".carpet-track a");
+
+searchBox.addEventListener("input", () => {
+    const value = searchBox.value.toLowerCase();
+
+    /* FILTRAR CARDS */
+    cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(value) ? "" : "none";
+    });
+
+    /* FILTRAR ITEMS DO CARPETE */
+    carpetItems.forEach(item => {
+        const img = item.querySelector("img");
+        if(img && img.dataset.name) {
+            const name = img.dataset.name.toLowerCase();
+            item.style.display = name.includes(value) ? "" : "none";
+        }
+    });
+});
+
+/* LÓGICA DO EASTER EGG (5 CLIQUES) */
+let clickCount = 0;
+let clickTimeout;
+
+document.getElementById("b-easter-egg").addEventListener("click", () => {
+    clickCount++;
+    
+    clearTimeout(clickTimeout);
+    clickTimeout = setTimeout(() => {
+        clickCount = 0;
+    }, 1500);
+
+    if (clickCount === 5) {
+        const overlay = document.getElementById("belle-overlay");
+        const audio = document.getElementById("belle-audio");
+
+        overlay.classList.add("active");
+        audio.currentTime = 0;
+        audio.play().catch(e => console.log("Áudio bloqueado ou não encontrado:", e));
+        
+        clickCount = 0;
+    }
+});
+
+/* FECHAR AO CLICAR EM QUALQUER LUGAR DA TELA */
+document.getElementById("belle-overlay").addEventListener("click", () => {
+    document.getElementById("belle-overlay").classList.remove("active");
+});
+</script>
+
+<div class="footer">
+    <p>SAB Values Beta © 2026</p>
+</div>
+
+</body>
+</html>
